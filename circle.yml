@@ -198,6 +198,18 @@ jobs:
             - run: docker push $DOCKER_REPO:all-jupyter-py36-cu100            
             - run: docker push $DOCKER_REPO:all-jupyter-py36            
             - run: docker push $DOCKER_REPO:all-jupyter
+
+        "all-jupyter-py36-cu100_all-jupyter-py36_all-jupyter_adase":
+        machine: true
+        steps:
+            - checkout
+            - run:
+                command: docker build -t $DOCKER_REPO:all-jupyter-py36-cu100_adase -t $DOCKER_REPO:all-jupyter-py36 -t $DOCKER_REPO:all-jupyter -f docker/Dockerfile.all-jupyter-py36-cu100_adase .
+                no_output_timeout: 1h
+            - run: docker login -u $DOCKER_USER -p $DOCKER_PASS            
+            - run: docker push $DOCKER_REPO:all-jupyter-py36-cu100_adase            
+            - run: docker push $DOCKER_REPO:all-jupyter-py36            
+            - run: docker push $DOCKER_REPO:all-jupyter
     
     "chainer-py36-cpu_chainer-cpu":
         machine: true
